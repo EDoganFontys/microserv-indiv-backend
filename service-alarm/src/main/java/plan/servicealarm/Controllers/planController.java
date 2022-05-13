@@ -8,9 +8,6 @@ public class planController {
 
     @GetMapping
     public String getAlarm(){
-        return "{\n" +
-                "    \"app\" : \"{service-alarm}\",\n" +
-                "    \"message\" : \"Hello\"\n" +
-                "}";
+        return "getalarm";
     }
 }
