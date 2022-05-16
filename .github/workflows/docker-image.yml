@@ -15,5 +15,5 @@ jobs:
       env: 
         PASSWORD: ${{secrets.GITHUB_TOKEN}}
       run: |
-        docker-compose -f ./deployment/docker-compose.yaml up -d
+        docker-compose run -f ./deployment/docker-compose.yaml up -d
         echo $PAT | docker login ghcr.io -u emredogan -p ${{secrets.GITHUB_TOKEN}}
