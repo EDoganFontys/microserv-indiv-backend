@@ -12,8 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build API microservices
-    - env: 
+      env: 
         PASSWORD: ${{secrets.GITHUB_TOKEN}}
-    - run: |
+      run: |
         docker-compose -f ./deployment/docker-compose.yaml up -d
         echo $PAT | docker login ghcr.io -u emredogan -p ${{secrets.GITHUB_TOKEN}}
