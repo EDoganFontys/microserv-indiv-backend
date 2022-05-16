@@ -23,4 +23,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file ./service-authentication/pom.xml
+      run: mvn -B clean package --file ./service-authentication/pom.xml
+    - name: Build with Maven
+      run: mvn -B clean package --file ./service-agenda/pom.xml
+    - name: Build with Maven
+      run: mvn -B clean package --file ./service-alarm/pom.xml
