@@ -11,5 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build API microservices
+    - env: 
+        PASSWORD: ${{secrets.GITHUB_TOKEN}}
       run: docker-compose -f ./deployment/docker-compose.yaml up -d
+        echo $PAT | docker login ghcr.io -u emredogan -p ${{secrets.GITHUB_TOKEN}}
