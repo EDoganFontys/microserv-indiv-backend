@@ -1,18 +1,25 @@
 package plan.servicealarm;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventReceiver {
 
-    private Logger log = LoggerFactory.getLogger(EventReceiver.class);
+    private final static String QUEUE_NAME = "hello";
 
-    @RabbitListener(queues = "${plan.rabbitmq.queue}")
-    public void receive(String event) {
-        System.out.println("received the event!");
-        log.info("Received event in service alarm: {}", event);
+    public static void main(String[] argv) throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setUsername("guest");
+        factory.setPassword("guest");
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
     }
 }

@@ -5,8 +5,8 @@ services:
     hostname: message-broker
     restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
   service-authentication: # <--- this is the name of the service and should be unique.
     image: service-authentication:latest # <--- this is the image of which the service will be based upon.
     hostname: service-authentication # <--- this will be the hostname it will be known as.
