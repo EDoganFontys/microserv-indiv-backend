@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
-@Entity
+//@Entity
 @Component
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, scope = AgendaItem.class)
 public class AgendaItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long agendaItemId;
     private String agendaItemName;
     private String agendaItemEvent;

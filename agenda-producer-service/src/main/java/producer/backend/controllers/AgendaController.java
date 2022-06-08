@@ -23,9 +23,9 @@ public class AgendaController {
         return "agenda created successfully";
     }
 
-    @GetMapping()
+    /*@GetMapping()
     public String getAgenda(@RequestParam Long agendaId) {
         var agenda = rabbitMqSender.getAgenda(agendaId);
         return "agenda pulled successfully \\n" + agenda;
-    }
+    }*/
 }

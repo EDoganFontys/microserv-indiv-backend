@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Component
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, scope = Agenda.class)
 public class Agenda implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long agendaId;
     private Date agendaCreationDate;
     public Agenda() {

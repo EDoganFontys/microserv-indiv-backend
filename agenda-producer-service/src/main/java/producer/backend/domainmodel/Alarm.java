@@ -3,15 +3,15 @@ package producer.backend.domainmodel;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.stereotype.Component;
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Component
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, scope = Alarm.class)
 public class Alarm {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long alarmId;
     private Date alarmDatetime;
     private String alarmName;
