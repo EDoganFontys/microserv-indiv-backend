@@ -15,5 +15,8 @@ jobs:
       env: 
         PASSWORD: ${{secrets.GITHUB_TOKEN}}
       run: |
-        docker-compose run -f ./deployment/docker-compose.yaml up -d
         echo $PAT | docker login ghcr.io -u emredogan -p ${{secrets.GITHUB_TOKEN}}
+        docker build . --file ./agenda-consumer-service/Dockerfile --tag ghcr.io/microserv-indiv-backend/agenda-consumer-service:latest
+        docker build . --file ./agenda-producer-service/Dockerfile --tag ghcr.io/microserv-indiv-backend/agenda-producer-service:latest
+        docker build . --file ./auth-consumer-service/Dockerfile --tag ghcr.io/microserv-indiv-backend/auth-consumer-service:latest
+        docker build . --file ./auth-producer-service/Dockerfile --tag ghcr.io/microserv-indiv-backend/auth-producer-service:latest
