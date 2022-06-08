@@ -2,31 +2,28 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
 name: Java CI with Maven
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3 , azure/login@v1
-    - name: Set up JDK 11
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11 #with Azure db login
+      #uses: actions/setup-java@v3 , azure/login@v1
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Build with Maven
+        #creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Build agenda-consumer-service with Maven
       run: mvn -B clean package --file ./agenda-consumer-service/pom.xml
-    - name: Build with Maven
+    - name: Build agenda-producer-service with Maven
       run: mvn -B clean package --file ./agenda-producer-service/pom.xml
-    - name: Build with Maven
+    - name: Build auth-consumer-service with Maven
       run: mvn -B clean package --file ./auth-consumer-service/pom.xml
-    - name: Build with Maven
+    - name: Build auth-producer-service with Maven
       run: mvn -B clean package --file ./auth-producer-service/pom.xml
