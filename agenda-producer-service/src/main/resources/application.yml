@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: create-drop
+        show-sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
+  datasource:
+    url: jdbc:sqlserver://emresqldb.database.windows.net:1433;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: emredb@emresqldb
+    password: y@Mu9xDvSriGVsP
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 15672
+    username: guest
+    exchange: agenda.exchange
+    queue: agenda.queue
+    routingkey: agenda.routingkey
+server:
+  port: 9092
+  servlet:
+    context-path: /api/v1
