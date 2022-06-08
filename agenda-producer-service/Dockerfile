@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk11:ubi
-ENV APP_HOME=usr/app/
-WORKDIR $APP_HOME
-COPY agenda-producer-service-0.0.1-SNAPSHOT.jar agenda-producer-service-0.0.1-SNAPSHOT.jar
+COPY *.jar agenda-producer-service-0.0.1-SNAPSHOT.jar
 EXPOSE 8082
+RUN mvn clean package
 CMD ["java", "-jar","agenda-producer-service-0.0.1-SNAPSHOT.jar"]
