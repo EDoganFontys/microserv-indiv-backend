@@ -24,8 +24,10 @@ jobs:
         cache: maven
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Build with Maven
-      run: mvn -B clean package --file ./service-authentication/pom.xml
+      run: mvn -B clean package --file ./agenda-consumer-service/pom.xml
     - name: Build with Maven
-      run: mvn -B clean package --file ./service-agenda/pom.xml
+      run: mvn -B clean package --file ./agenda-producer-service/pom.xml
     - name: Build with Maven
-      run: mvn -B clean package --file ./service-alarm/pom.xml
+      run: mvn -B clean package --file ./auth-consumer-service/pom.xml
+    - name: Build with Maven
+      run: mvn -B clean package --file ./auth-producer-service/pom.xml
