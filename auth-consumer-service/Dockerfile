@@ -1,4 +1,5 @@
 FROM adoptopenjdk/openjdk11:ubi
-COPY auth-consumer-service-0.0.1-SNAPSHOT.jar auth-consumer-service-0.0.1-SNAPSHOT.jar
-EXPOSE 8082
-CMD ["java", "-jar","auth-consumer-service-0.0.1-SNAPSHOT.jar"]
+COPY ./target ./target
+EXPOSE 8080
+COPY . .
+CMD ["java", "-jar","./target/auth-consumer-service-0.0.1-SNAPSHOT.jar"]
