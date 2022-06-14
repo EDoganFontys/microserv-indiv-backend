@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import producer.backend.RabbitMqSender;
 import producer.backend.domainmodels.LoginUser;
+import producer.backend.domainmodels.RegisterUser;
 import producer.backend.domainmodels.User;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -28,7 +29,7 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "register")
-    public String register(@RequestBody User user) {
+    public String register(@RequestBody RegisterUser user) {
         rabbitMqSender.sendRegister(user);
         return "registered account successfully";
     }

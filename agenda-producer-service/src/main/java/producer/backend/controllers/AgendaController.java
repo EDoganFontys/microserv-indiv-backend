@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import producer.backend.RabbitMqSender;
 import producer.backend.domainmodel.Agenda;
+import producer.backend.domainmodel.AgendaDto;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -17,15 +18,13 @@ public class AgendaController {
         this.rabbitMqSender = rabbitMqSender;
     }
 
-    @PostMapping()
+    @PostMapping(value="create")
     public String createAgenda(@RequestBody Agenda agenda) {
-        rabbitMqSender.saveAgenda(agenda);
-        return "agenda created successfully";
+        return rabbitMqSender.saveAgenda(agenda);
     }
 
-    /*@GetMapping()
-    public String getAgenda(@RequestParam Long agendaId) {
-        var agenda = rabbitMqSender.getAgenda(agendaId);
-        return "agenda pulled successfully \\n" + agenda;
-    }*/
+    @GetMapping(value = "find")
+    public AgendaDto getAgenda(@RequestParam Long agendaId) {
+        return rabbitMqSender.getAgenda(agendaId);
+    }
 }

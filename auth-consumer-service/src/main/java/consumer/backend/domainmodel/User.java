@@ -4,32 +4,45 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 @Component
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, scope = User.class)
 public class User implements Serializable {
-    private Long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private String email;
 
-    public User(Long userId, String username, String email, String password) {
-        this.userId = userId;
+    public User() {
+    }
+
+    public User(Long id, String username, String password, String email) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public User() {
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -59,7 +72,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

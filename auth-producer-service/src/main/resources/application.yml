@@ -10,6 +10,6 @@ spring:
     queue: user.queue
     routingkey: user.routingkey
 server:
-  port: 4500
+  port: 9091
   servlet:
     context-path: /api/v1

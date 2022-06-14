@@ -12,12 +12,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    @Value("${spring.rabbitmq.queue}")
-    private String queue;
+    @Value("${spring.rabbitmq.queue.post}")
+    private String queuePost;
+    @Value("${spring.rabbitmq.queue.get}")
+    private String queueGet;
     @Value("${spring.rabbitmq.exchange}")
     private String exchange;
-    @Value("${spring.rabbitmq.routingkey}")
-    private String routingKey;
+    @Value("${spring.rabbitmq.routingkey.post}")
+    private String routingKeyPost;
+    @Value("${spring.rabbitmq.routingkey.get}")
+    private String routingKeyGet;
     @Value("${spring.rabbitmq.username}")
     private String username;
     @Value("${spring.rabbitmq.password}")
@@ -25,19 +29,31 @@ public class RabbitMQConfig {
     @Value("${spring.rabbitmq.host}")
     private String host;
     @Bean
-    Queue queue() {
-        return new Queue(queue, true);
+    Queue queuePost() {
+        return new Queue(queuePost, true);
+    }
+    @Bean
+    Queue queueGet() {
+        return new Queue(queueGet, true);
     }
     @Bean
     Exchange myExchange() {
         return ExchangeBuilder.directExchange(exchange).durable(true).build();
     }
     @Bean
-    Binding binding() {
+    Binding binding1() {
         return BindingBuilder
-                .bind(queue())
+                .bind(queuePost())
                 .to(myExchange())
-                .with(routingKey)
+                .with(routingKeyPost)
+                .noargs();
+    }
+    @Bean
+    Binding binding2() {
+        return BindingBuilder
+                .bind(queueGet())
+                .to(myExchange())
+                .with(routingKeyGet)
                 .noargs();
     }
     @Bean

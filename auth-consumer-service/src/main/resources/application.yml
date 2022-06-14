@@ -1,6 +1,17 @@
 server:
   port: 8080
 spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.MySQLDialect
+      format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:13306/user_db
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: emre_db
+    password: MySQLEmre123
   rabbitmq:
     host: localhost
     password: guest
