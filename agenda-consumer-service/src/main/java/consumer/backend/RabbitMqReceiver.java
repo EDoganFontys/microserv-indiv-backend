@@ -9,7 +9,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import producer.backend.domainmodel.AgendaDto;
+import consumer.backend.domainmodel.AgendaDto;
 
 
 @Component

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-auth
+spec:
+  selector:
+    matchLabels:
+      app: auth
+      tier: backend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: auth-producer
+          image: localhost:5000/api/auth-producer:v0.1
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8081
+        - name: auth-consumer
+          image: localhost:5000/api/auth-consumer:v0.1
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081

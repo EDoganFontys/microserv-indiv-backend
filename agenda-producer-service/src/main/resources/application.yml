@@ -12,6 +12,6 @@ spring:
     routingkey.post: agenda.routingkey.post
     routingkey.get: agenda.routingkey.get
 server:
-  port: 9092
+  port: 8082
   servlet:
     context-path: /api/v1
