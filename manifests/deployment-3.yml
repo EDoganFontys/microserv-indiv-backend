@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "emrekubernetes-acbc"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "emrekubernetes-acbc"
+  template:
+    metadata:
+      labels:
+        app: "emrekubernetes-acbc"
+    spec:
+      containers:
+        - name: "emrekubernetes-acbc"
+          image: "emreregistry.azurecr.io/emrekubernetes"
+          ports:
+          - containerPort: 8081
