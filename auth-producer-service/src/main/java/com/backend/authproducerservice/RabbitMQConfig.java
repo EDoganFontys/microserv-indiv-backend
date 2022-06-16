@@ -1,4 +1,4 @@
-package producer.backend;
+package com.backend.authproducerservice;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;

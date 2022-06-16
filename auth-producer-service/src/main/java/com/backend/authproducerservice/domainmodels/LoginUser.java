@@ -1,4 +1,4 @@
-package producer.backend.domainmodels;
+package com.backend.authproducerservice.domainmodels;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

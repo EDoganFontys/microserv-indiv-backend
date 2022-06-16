@@ -1,4 +1,4 @@
-package producer.backend.domainmodels;
+package com.backend.authproducerservice.domainmodels;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

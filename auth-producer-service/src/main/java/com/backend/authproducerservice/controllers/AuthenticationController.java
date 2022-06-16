@@ -1,12 +1,10 @@
-package producer.backend.controllers;
+package com.backend.authproducerservice.controllers;
 
+import com.backend.authproducerservice.RabbitMqSender;
+import com.backend.authproducerservice.domainmodels.LoginUser;
+import com.backend.authproducerservice.domainmodels.RegisterUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import producer.backend.RabbitMqSender;
-import producer.backend.domainmodels.LoginUser;
-import producer.backend.domainmodels.RegisterUser;
-import producer.backend.domainmodels.User;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

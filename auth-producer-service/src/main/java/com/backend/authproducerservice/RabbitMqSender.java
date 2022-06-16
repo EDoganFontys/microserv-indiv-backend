@@ -1,12 +1,11 @@
-package producer.backend;
+package com.backend.authproducerservice;
 
+import com.backend.authproducerservice.domainmodels.LoginUser;
+import com.backend.authproducerservice.domainmodels.RegisterUser;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import producer.backend.domainmodels.LoginUser;
-import producer.backend.domainmodels.RegisterUser;
-import producer.backend.domainmodels.User;
 
 @Service
 public class RabbitMqSender {

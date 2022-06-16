@@ -1,5 +1,4 @@
-package producer.backend;
-
+package com.backend.authproducerservice;
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -12,21 +11,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 @Configuration
-@SpringBootApplication
 @EntityScan
-public class BackendApplication {
-
+@SpringBootApplication
+public class AuthProducerServiceApplication {
 	@Value("${spring.rabbitmq.host}")
 	String host;
 	@Value("${spring.rabbitmq.username}")
 	String username;
 	@Value("${spring.rabbitmq.password}")
 	String password;
+
 	public static void main(String[] args) {
-		SpringApplication.run(BackendApplication.class, args);
+		SpringApplication.run(AuthProducerServiceApplication.class, args);
 	}
+
 	@Bean
 	CachingConnectionFactory connectionFactory() {
 		CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
