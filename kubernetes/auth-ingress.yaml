@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: auth-ingress
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
 spec:
   rules:
     - http:
@@ -10,6 +12,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: auth-service
+                name: emrekubernetes-bb45
                 port:
                   number: 80
