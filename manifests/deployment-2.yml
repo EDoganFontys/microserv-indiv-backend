@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "emrekubernetes-de93"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "emrekubernetes-de93"
+  template:
+    metadata:
+      labels:
+        app: "emrekubernetes-de93"
+    spec:
+      containers:
+        - name: "emrekubernetes-de93"
+          image: "emreregistry.azurecr.io/emrekubernetes"
+          ports:
+          - containerPort: 8080
