@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "emrekubernetes-bb45"
+    labels:
+        app: "emrekubernetes-bb45"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: emre-kubernetes97eb-emrekubernetes-bb45.23e95785158f46e48b06.uksouth.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "emrekubernetes-bb45"
+                servicePort: 8083
