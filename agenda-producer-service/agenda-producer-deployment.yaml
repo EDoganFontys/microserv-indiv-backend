@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agenda-producer-deploy
+spec:
+  selector:
+    matchLabels:
+      app: agenda-producer-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: agenda-producer-pod
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+        - name: agenda-producer
+          image: emreregistry.azurecr.io/agenda-producer:latest
+          imagePullPolicy: Always
+          resources:
+          ports:
+            - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agenda-producer-service
+spec:
+  selector:
+    app: agenda-producer-pod
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8082
