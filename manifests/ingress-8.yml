@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "emrekubernetes2-4361"
+    labels:
+        app: "emrekubernetes2-4361"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: agenda-backend-emrekubernetes2-4361.a4f8b91932af49a6b1ea.uksouth.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "emrekubernetes2-4361"
+                servicePort: 8080
