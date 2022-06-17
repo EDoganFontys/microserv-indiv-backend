@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "emrekubernetes-bccd"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "emrekubernetes-bccd"
+  template:
+    metadata:
+      labels:
+        app: "emrekubernetes-bccd"
+    spec:
+      containers:
+        - name: "emrekubernetes-bccd"
+          image: "emreregistry.azurecr.io/emrekubernetes"
+          ports:
+          - containerPort: 8083
