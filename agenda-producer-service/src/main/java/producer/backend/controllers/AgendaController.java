@@ -25,6 +25,6 @@ public class AgendaController {
 
     @GetMapping(value = "find")
     public AgendaDto getAgenda(@RequestParam Long agendaId) {
-        return rabbitMqSender.getAgenda(agendaId);
+        return /*rabbitMqSender.getAgenda(agendaId);*/null;
     }
 }

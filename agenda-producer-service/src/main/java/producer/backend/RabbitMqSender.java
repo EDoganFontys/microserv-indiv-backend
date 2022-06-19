@@ -1,12 +1,10 @@
 package producer.backend;
 
-import com.google.gson.Gson;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import producer.backend.domainmodel.Agenda;
-import producer.backend.domainmodel.AgendaDto;
 
 import java.util.Date;
 
@@ -22,10 +20,8 @@ public class RabbitMqSender {
     @Value("${spring.rabbitmq.exchange}")
     private String exchange;
 
-    @Value("${spring.rabbitmq.routingkey.post}")
-    private String routingkeyPost;
-    @Value("${spring.rabbitmq.routingkey.get}")
-    private String routingkeyGet;
+    @Value("${spring.rabbitmq.routingkey}")
+    private String routingkey;
 
     public String saveAgenda(Agenda agenda){
         agenda.setAgendaCreationDate(new Date());
@@ -38,17 +34,8 @@ public class RabbitMqSender {
         }
     }
 
-    public AgendaDto getAgenda(Long id){
-        return get(id);
-    }
-
     public void send(Agenda agenda){
-        rabbitTemplate.convertAndSend(exchange,routingkeyPost, agenda);
+        rabbitTemplate.convertAndSend(exchange,routingkey, agenda);
     }
 
-    public AgendaDto get(Long id){
-        var agenda = rabbitTemplate.convertSendAndReceive(exchange,routingkeyGet, id);
-        AgendaDto temp = new AgendaDto();
-        return (AgendaDto) agenda;
-    }
 }

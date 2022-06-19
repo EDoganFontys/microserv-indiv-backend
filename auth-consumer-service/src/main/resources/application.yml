@@ -4,19 +4,21 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       dialect: org.hibernate.dialect.MySQLDialect
       format_sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/user_db
+    url: jdbc:mysql://localhost:13306/user_db
     driverClassName: com.mysql.cj.jdbc.Driver
     username: emre_db
     password: MySQLEmre123
   rabbitmq:
-    host: localhost
-    password: guest
+    host: goose.rmq2.cloudamqp.com
+    password: nc7c9ImeBgskdgB1DKTPATjekMRYm-SD
     port: 15672
-    username: guest
+    username: hktkskib
     exchange: user.exchange
     queue: user.queue
     routingkey: user.routingkey
+rabbit:
+  uri: amqps://hktkskib:nc7c9ImeBgskdgB1DKTPATjekMRYm-SD@goose.rmq2.cloudamqp.com/hktkskib

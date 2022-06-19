@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:sqlserver://emresqldb.database.windows.net:1433;database=indivdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: emredb@emresqldb
+    password: y@Mu9xDvSriGVsP
+  rabbitmq:
+    host: goose.rmq2.cloudamqp.com
+    password: nc7c9ImeBgskdgB1DKTPATjekMRYm-SD
+    port: 15672
+    username: hktkskib
+    exchange: agenda.gen.exchange
+    queue: agenda.gen.queue
+    routingkey: agenda.gen.routingkey
+rabbit:
+  uri: amqps://hktkskib:nc7c9ImeBgskdgB1DKTPATjekMRYm-SD@goose.rmq2.cloudamqp.com/hktkskib

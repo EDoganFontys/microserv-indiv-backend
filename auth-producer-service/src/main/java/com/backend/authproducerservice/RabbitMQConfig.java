@@ -24,9 +24,11 @@ public class RabbitMQConfig {
         private String password;
         @Value("${spring.rabbitmq.host}")
         private String host;
+        @Value("${rabbit.uri}")
+        private String rabbituri;
         @Bean
         Queue queue() {
-            return new Queue(queue, true);
+            return new Queue(queue, true,false,true);
         }
         @Bean
         Exchange myExchange() {
@@ -43,6 +45,7 @@ public class RabbitMQConfig {
         @Bean
         public ConnectionFactory connectionFactory() {
             CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
+            cachingConnectionFactory.setUri(rabbituri);
             cachingConnectionFactory.setUsername(username);
             cachingConnectionFactory.setPassword(password);
             return cachingConnectionFactory;

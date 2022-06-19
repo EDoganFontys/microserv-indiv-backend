@@ -12,54 +12,40 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    @Value("${spring.rabbitmq.queue.post}")
-    private String queuePost;
-    @Value("${spring.rabbitmq.queue.get}")
-    private String queueGet;
+    @Value("${spring.rabbitmq.queue}")
+    private String queue;
     @Value("${spring.rabbitmq.exchange}")
     private String exchange;
-    @Value("${spring.rabbitmq.routingkey.post}")
-    private String routingKeyPost;
-    @Value("${spring.rabbitmq.routingkey.get}")
-    private String routingKeyGet;
+    @Value("${spring.rabbitmq.routingkey}")
+    private String routingKey;
     @Value("${spring.rabbitmq.username}")
     private String username;
     @Value("${spring.rabbitmq.password}")
     private String password;
     @Value("${spring.rabbitmq.host}")
     private String host;
+    @Value("${rabbit.uri}")
+    private String rabbituri;
     @Bean
-    Queue queuePost() {
-        return new Queue(queuePost, true);
-    }
-    @Bean
-    Queue queueGet() {
-        return new Queue(queueGet, true);
+    Queue queue() {
+        return new Queue(queue, true,false,true);
     }
     @Bean
     Exchange myExchange() {
         return ExchangeBuilder.directExchange(exchange).durable(true).build();
     }
     @Bean
-    Binding binding1() {
+    Binding binding() {
         return BindingBuilder
-                .bind(queuePost())
+                .bind(queue())
                 .to(myExchange())
-                .with(routingKeyPost)
+                .with(routingKey)
                 .noargs();
     }
-    @Bean
-    Binding binding2() {
-        return BindingBuilder
-                .bind(queueGet())
-                .to(myExchange())
-                .with(routingKeyGet)
-                .noargs();
-    }
-
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
+        cachingConnectionFactory.setUri(rabbituri);
         cachingConnectionFactory.setUsername(username);
         cachingConnectionFactory.setPassword(password);
         return cachingConnectionFactory;

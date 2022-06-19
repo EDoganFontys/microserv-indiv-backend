@@ -2,16 +2,16 @@ spring:
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
-    host: localhost
-    password: guest
+    host: goose.rmq2.cloudamqp.com
+    password: nc7c9ImeBgskdgB1DKTPATjekMRYm-SD
     port: 15672
-    username: guest
+    username: hktkskib
     exchange: agenda.exchange
-    queue.post: agenda.queue.post
-    queue.get: agenda.queue.get
-    routingkey.post: agenda.routingkey.post
-    routingkey.get: agenda.routingkey.get
+    queue: agenda.queue
+    routingkey: agenda.routingkey
 server:
   port: 8082
   servlet:
     context-path: /api/v1
+rabbit:
+  uri: amqps://hktkskib:nc7c9ImeBgskdgB1DKTPATjekMRYm-SD@goose.rmq2.cloudamqp.com/hktkskib

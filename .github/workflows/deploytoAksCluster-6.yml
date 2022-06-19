@@ -14,25 +14,17 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/agenda-producer-service" -f  "agenda-producer-service/Dockerfile" -t emreregistry.azurecr.io/emrekubernetes2:${{ github.sha }} --label dockerfile-path=agenda-producer-service/Dockerfile
-        docker push emreregistry.azurecr.io/emrekubernetes2:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE/auth-producer" -f  "auth-producer/Dockerfile" -t emreregistry.azurecr.io/auth-producer
+        docker push emreregistry.azurecr.io/auth-producer
     
     - uses: azure/k8s-set-context@v1
       with:
-         kubeconfig: ${{ secrets.aks_emrekubernetes2_kubeConfig }}
+         kubeconfig: ${{ secrets.aks_emrekubernetes_kubeConfig }}
       id: login
     
-    - name: Create namespace
-      run: |
-        namespacePresent=`kubectl get namespace | grep agenda-backend | wc -l`
-        if [ $namespacePresent -eq 0 ]
-        then
-            echo `kubectl create namespace agenda-backend`
-        fi
-
     - uses: azure/k8s-create-secret@v1
       with:
-        namespace: agenda-backend
+        namespace: default
         container-registry-url: emreregistry.azurecr.io
         container-registry-username: ${{ secrets.acr_emreregistry_username }}
         container-registry-password: ${{ secrets.acr_emreregistry_password }}
@@ -40,12 +32,10 @@ jobs:
        
     - uses: azure/k8s-deploy@v1.2
       with:
-        namespace: agenda-backend
+        namespace: default
         manifests: |
-          manifests/deployment-6.yml
-          manifests/service-6.yml
-          manifests/ingress-6.yml
+         {{$GITHUB_WORKSPACE}}/auth-producer-service/auth-producer-deployment.yaml
         images: |
-          emreregistry.azurecr.io/emrekubernetes2:${{ github.sha }}
+          emreregistry.azurecr.io/auth-producer:latest
         imagepullsecrets: |
           emrekubernetdockerauth
