@@ -22,12 +22,12 @@ jobs:
       with:
          kubeconfig: ${{ secrets.aks_emrekubernetes_kubeConfig }}
       id: login
-      
+
     - uses: azure/k8s-deploy@v1.2
       with:
         namespace: default
         manifests: |
-         {{$GITHUB_WORKSPACE}}/agenda-producer-service/agenda-producer-deployment.yaml
+          microserv-indiv-backend/agenda-producer-service/agenda-producer-deployment.yaml
         images: |
           emreregistry.azurecr.io/agenda-producer:latest
         imagepullsecrets: |
