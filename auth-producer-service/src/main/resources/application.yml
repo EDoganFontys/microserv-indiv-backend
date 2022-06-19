@@ -7,10 +7,10 @@ spring:
       format_sql: true
     open-in-view: false
   datasource:
-    url: jdbc:mysql://10.0.85.178:13306/user_db
+    url: jdbc:mysql://mysqlserveremre.mysql.database.azure.com:3306/user_db?useSSL=true&requireSSL=false
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: emre_db
-    password: MySQLEmre123
+    username: emre_db@mysqlserveremre
+    password: SecurePassword123
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
