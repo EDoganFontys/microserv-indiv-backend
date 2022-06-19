@@ -22,15 +22,7 @@ jobs:
       with:
          kubeconfig: ${{ secrets.aks_emrekubernetes_kubeConfig }}
       id: login
-    
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: default
-        container-registry-url: emreregistry.azurecr.io
-        container-registry-username: ${{ secrets.acr_emreregistry_username }}
-        container-registry-password: ${{ secrets.acr_emreregistry_password }}
-        secret-name: emrekubernetdockerauth
-       
+      
     - uses: azure/k8s-deploy@v1.2
       with:
         namespace: default
@@ -39,4 +31,4 @@ jobs:
         images: |
           emreregistry.azurecr.io/agenda-producer:latest
         imagepullsecrets: |
-          emrekubernetdockerauth
+          acr-secret
