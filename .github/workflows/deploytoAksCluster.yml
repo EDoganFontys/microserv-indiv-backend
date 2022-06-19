@@ -44,7 +44,6 @@ jobs:
         manifests: |
           manifests/deployment-10.yml
           manifests/service-10.yml
-          manifests/ingress-10.yml
         images: |
           emreregistry.azurecr.io/emrekubernetes:${{ github.sha }}
         imagepullsecrets: |
