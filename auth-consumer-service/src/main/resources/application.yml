@@ -8,10 +8,10 @@ spring:
       dialect: org.hibernate.dialect.MySQLDialect
       format_sql: true
   datasource:
-    url: jdbc:mysql://localhost:13306/user_db
-    driverClassName: com.mysql.cj.jdbc.Driver
-    username: emre_db
-    password: MySQLEmre123
+      url: jdbc:mysql://mysqlserveremre.mysql.database.azure.com:3306/user_db?useSSL=true&requireSSL=false
+      driverClassName: com.mysql.cj.jdbc.Driver
+      username: emre_db@mysqlserveremre
+      password: SecurePassword123
   rabbitmq:
     host: goose.rmq2.cloudamqp.com
     password: nc7c9ImeBgskdgB1DKTPATjekMRYm-SD
