@@ -14,9 +14,9 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/agenda-gen-consumer-service" -f  "agenda-gen-consumer-service/Dockerfile" -t agenda-gen-consumer:latest --label dockerfile-path=agenda-gen-consumer-service/Dockerfile
-        docker tag agenda-gen-consumer emreregistry.azurecr.io/agenda-gen-consumer
-        docker push emreregistry.azurecr.io/agenda-gen-consumer:latest
+        docker build "$GITHUB_WORKSPACE/agenda-gen-producer-service" -f  "agenda-gen-producer-service/Dockerfile" -t agenda-gen-producer:latest --label dockerfile-path=agenda-gen-producer-service/Dockerfile
+        docker tag agenda-gen-producer emreregistry.azurecr.io/agenda-gen-producer
+        docker push emreregistry.azurecr.io/agenda-gen-producer:latest
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -35,8 +35,8 @@ jobs:
       with:
         namespace: default
         manifests: |
-          manifests/agenda-gen-consumer-deployment.yaml
+          manifests/agenda-gen-producer-deployment.yaml
         images: |
-          emreregistry.azurecr.io/agenda-gen-consumer:latest
+          emreregistry.azurecr.io/agenda-gen-producer:latest
         imagepullsecrets: |
           agenda-gen-producer-secret
