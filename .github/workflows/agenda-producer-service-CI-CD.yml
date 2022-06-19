@@ -27,7 +27,9 @@ jobs:
       with:
         namespace: default
         manifests: |
-          microserv-indiv-backend/agenda-producer-service/agenda-producer-deployment.yaml
+          manifests/agenda-producer-deployment.yaml
+          manifests/agenda-producer-service.yaml
+          manifests/agenda-producer-ingress.yaml
         images: |
           emreregistry.azurecr.io/agenda-producer:latest
         imagepullsecrets: |
