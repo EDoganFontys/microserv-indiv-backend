@@ -27,8 +27,7 @@ jobs:
       with:
         namespace: default
         manifests: |
-          manifests/deployment.yml
-          manifests/service.yml
+          manifests/agenda-producer-deployment.yaml
         images: |
           emreregistry.azurecr.io/agenda-producer:latest
         imagepullsecrets: |
