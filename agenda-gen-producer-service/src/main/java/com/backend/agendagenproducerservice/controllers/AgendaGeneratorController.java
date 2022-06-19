@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/agenda")
-public class AgendaController {
+public class AgendaGeneratorController {
 
     private RabbitMqSender rabbitMqSender;
 
     @Autowired
-    public AgendaController(RabbitMqSender rabbitMqSender) {
+    public AgendaGeneratorController(RabbitMqSender rabbitMqSender) {
         this.rabbitMqSender = rabbitMqSender;
     }
 

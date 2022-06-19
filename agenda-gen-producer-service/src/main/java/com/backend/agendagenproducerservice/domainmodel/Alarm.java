@@ -2,59 +2,27 @@ package com.backend.agendagenproducerservice.domainmodel;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
+@NoArgsConstructor
 @Component
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, scope = Alarm.class)
 public class Alarm {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long alarmId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Date alarmDatetime;
     private String alarmName;
-
-    public Alarm() {
-    }
-
-    public Alarm(Long alarmId, Date alarmDatetime, String alarmName) {
-        this.alarmId = alarmId;
-        this.alarmDatetime = alarmDatetime;
-        this.alarmName = alarmName;
-    }
-
-    public Long getAlarmId() {
-        return alarmId;
-    }
-
-    public void setAlarmId(Long alarmId) {
-        this.alarmId = alarmId;
-    }
-
-    public Date getAlarmDatetime() {
-        return alarmDatetime;
-    }
-
-    public void setAlarmDatetime(Date alarmDatetime) {
-        this.alarmDatetime = alarmDatetime;
-    }
-
-    public String getAlarmName() {
-        return alarmName;
-    }
-
-    public void setAlarmName(String alarmName) {
-        this.alarmName = alarmName;
-    }
-
-    @Override
-    public String toString() {
-        return "Alarm{" +
-                "alarmId=" + alarmId +
-                ", alarmDatetime=" + alarmDatetime +
-                ", alarmName='" + alarmName + '\'' +
-                '}';
-    }
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private AgendaItem agendaItem;
 }

@@ -1,4 +1,13 @@
 spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:sqlserver://emresqldb.database.windows.net:1433;database=indivdb2;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: emredb@emresqldb
+    password: y@Mu9xDvSriGVsP
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
@@ -10,7 +19,7 @@ spring:
     queue: agenda.gen.queue
     routingkey: agenda.gen.routingkey
 server:
-  port: 8082
+  port: 8084
   servlet:
     context-path: /api/v1
 rabbit:

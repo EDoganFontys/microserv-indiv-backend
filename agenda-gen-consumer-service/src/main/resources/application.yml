@@ -1,12 +1,12 @@
 server:
-  port: 8083
+  port: 8085
 spring:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:sqlserver://emresqldb.database.windows.net:1433;database=indivdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    url: jdbc:sqlserver://emresqldb.database.windows.net:1433;database=indivdb2;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     username: emredb@emresqldb
     password: y@Mu9xDvSriGVsP
