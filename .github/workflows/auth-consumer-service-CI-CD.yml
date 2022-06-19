@@ -35,7 +35,7 @@ jobs:
       with:
         namespace: default
         manifests: |
-          manifests/auth-consumer-deployment.yml
+          manifests/auth-consumer-deployment.yaml
         images: |
           emreregistry.azurecr.io/auth-consumer:latest
         imagepullsecrets: |
