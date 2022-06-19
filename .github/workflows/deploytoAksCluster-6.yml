@@ -14,7 +14,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build -t auth-producer:latest .
+        docker build -t auth-producer:latest . -f  "auth-producer/Dockerfile"
         docker tag auth-producer emreregistry.azurecr.io/auth-producer
         docker push emreregistry.azurecr.io/auth-producer
     
