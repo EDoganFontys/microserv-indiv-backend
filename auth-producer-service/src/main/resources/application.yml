@@ -7,7 +7,7 @@ spring:
       format_sql: true
     open-in-view: false
   datasource:
-    url: jdbc:mysql://localhost:13306/user_db
+    url: jdbc:mysql://10.0.85.178:13306/user_db
     driverClassName: com.mysql.cj.jdbc.Driver
     username: emre_db
     password: MySQLEmre123
