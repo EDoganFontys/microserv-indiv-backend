@@ -14,9 +14,9 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/auth-consumer-service" -f  "auth-consumer-service/Dockerfile" -t auth-consumer:latest --label dockerfile-path=auth-consumer-service/Dockerfile
-        docker tag auth-consumer emreregistry.azurecr.io/auth-consumer
-        docker push emreregistry.azurecr.io/auth-consumer:latest
+        docker build "$GITHUB_WORKSPACE/agenda-consumer-service" -f  "agenda-consumer-service/Dockerfile" -t agenda-consumer:latest --label dockerfile-path=agenda-consumer-service/Dockerfile
+        docker tag agenda-consumer emreregistry.azurecr.io/agenda-consumer
+        docker push emreregistry.azurecr.io/agenda-consumer:latest
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -29,14 +29,14 @@ jobs:
         container-registry-url: emreregistry.azurecr.io
         container-registry-username: ${{ secrets.acr_emreregistry_username }}
         container-registry-password: ${{ secrets.acr_emreregistry_password }}
-        secret-name: auth-consumer-secret
+        secret-name: agenda-consumer-secret
        
     - uses: azure/k8s-deploy@v1.2
       with:
         namespace: default
         manifests: |
-          manifests/auth-consumer-deployment.yaml
+          manifests/agenda-consumer-deployment.yaml
         images: |
-          emreregistry.azurecr.io/auth-consumer:latest
+          emreregistry.azurecr.io/agenda-consumer:latest
         imagepullsecrets: |
-          auth-consumer-secret
+          agenda-consumer-secret
