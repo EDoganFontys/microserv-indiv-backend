@@ -1,0 +1,42 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: emreregistry.azurecr.io
+        username: ${{ secrets.acr_emreregistry_username }}
+        password: ${{ secrets.acr_emreregistry_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/agenda-producer-service" -f  "agenda-producer-service/Dockerfile" -t agenda-producer:latest --label dockerfile-path=agenda-producer-service/Dockerfile
+        docker tag agenda-producer emreregistry.azurecr.io/agenda-producer
+        docker push emreregistry.azurecr.io/agenda-producer:latest
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_emrekubernetes_kubeConfig }}
+      id: login
+    
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: default
+        container-registry-url: emreregistry.azurecr.io
+        container-registry-username: ${{ secrets.acr_emreregistry_username }}
+        container-registry-password: ${{ secrets.acr_emreregistry_password }}
+        secret-name: emrekubernetdockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: default
+        manifests: |
+         {{$GITHUB_WORKSPACE}}/agenda-producer-service/agenda-producer-deployment.yaml
+        images: |
+          emreregistry.azurecr.io/agenda-producer:latest
+        imagepullsecrets: |
+          emrekubernetdockerauth
